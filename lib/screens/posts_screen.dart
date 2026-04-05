@@ -73,13 +73,18 @@ class _PostsScreenState extends State<PostsScreen> {
                           children: [
                             Text(
                               post.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             SizedBox(height: 9),
-                            Text(post.body),
+                            Text(post.body,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            ),
                           ],
                         ),
                       ),
