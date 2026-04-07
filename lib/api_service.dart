@@ -4,14 +4,22 @@ import 'model.dart';
 
 class ApiService {
   Future<List<Post>> fetchData() async {
-    final response = await http.get(Uri.parse('https://dummyjson.com/posts'));
+    List<Post> postList = [];
+    try {
+      final response = await http.get(Uri.parse('https://dummyjson.com/posts'));
     final data = jsonDecode(response.body);
     final List posts = data['posts'];
     final List<Post> postList = posts.map((e) => Post.fromJson(e)).toList();
 
-    print(postList[0].title);
+     print(postList[0].title);
 
     print(data['posts'][0]['title']);
+    } catch (e) {
+      throw Exception('donload error: $e');
+    }
+    
+
+   
 
     return postList;
   }
