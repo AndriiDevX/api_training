@@ -1,3 +1,4 @@
+import 'package:api_training/post_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:api_training/model.dart';
 import 'package:api_training/api_service.dart';
@@ -11,6 +12,16 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostsScreenState extends State<PostsScreen> {
+
+  final provider = PostProvider();
+
+  void loadPOsts() async{
+    await provider.loadPosts();
+
+   setState(() {
+     
+   });
+  }
   List<Post> posts = [];
 
   @override
@@ -45,9 +56,9 @@ class _PostsScreenState extends State<PostsScreen> {
                 ],
               )
               : ListView.builder(
-                  itemCount: posts.length,
+                  itemCount: provider.posts.length,
                   itemBuilder: (context, index) {
-                    final post = posts[index];
+                    final post = provider.posts[index];
         
                     return InkWell(
                       onTap: () {
